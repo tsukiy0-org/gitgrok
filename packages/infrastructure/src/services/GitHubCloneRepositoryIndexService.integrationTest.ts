@@ -1,20 +1,20 @@
 import { SystemConfiguration, Url } from "@tsukiy0/extensions-core";
-import { GitHubZipRepositoryIndexService } from "./GitHubZipRepositoryIndexService";
 import path from "path";
 import { Repository, RepositoryId } from "@app/core";
 import fs from "fs";
+import { GitHubCloneRepositoryIndexService } from "./GitHubCloneRepositoryIndexService";
 
-describe("GitHubZipRepositoryIndexService", () => {
+describe("GitHubCloneRepositoryIndexService", () => {
   let org: string;
   let rootPath: string;
-  let sut: GitHubZipRepositoryIndexService;
+  let sut: GitHubCloneRepositoryIndexService;
 
   beforeEach(() => {
     const config = new SystemConfiguration();
     const accessToken = config.get("GH_ACCESS_TOKEN");
     org = "atlassian";
-    rootPath = path.resolve(__dirname, "../../tmp/zip");
-    sut = new GitHubZipRepositoryIndexService(org, rootPath, accessToken);
+    rootPath = path.resolve(__dirname, "../../tmp/clone");
+    sut = new GitHubCloneRepositoryIndexService(org, rootPath, accessToken);
   });
 
   describe("index", () => {
