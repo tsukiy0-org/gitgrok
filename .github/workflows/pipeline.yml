@@ -1,0 +1,56 @@
+name: pipeline
+on:
+  push:
+    branches:
+      - master
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: build
+        run: |
+          docker-compose -f tasks/ci/docker-compose.yml build build
+          docker-compose -f tasks/ci/docker-compose.yml run build
+          docker-compose -f tasks/ci/docker-compose.yml down
+      - name: dev_publish
+        run: |
+          docker-compose -f tasks/ci/docker-compose.yml build publish
+          docker-compose -f tasks/ci/docker-compose.yml run publish
+          docker-compose -f tasks/ci/docker-compose.yml down
+      - name: dev_deploy
+        env:
+          Environment: dev
+          ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1
+        run: |
+          docker-compose -f tasks/ci/docker-compose.yml build deploy
+          docker-compose -f tasks/ci/docker-compose.yml run deploy
+          docker-compose -f tasks/ci/docker-compose.yml down
+      - name: integration
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1
+        run: |
+          docker-compose -f tasks/ci/docker-compose.yml build integration
+          docker-compose -f tasks/ci/docker-compose.yml run integration
+          docker-compose -f tasks/ci/docker-compose.yml down
+      - name: prod_publish
+        run: |
+          docker-compose -f tasks/ci/docker-compose.yml build publish
+          docker-compose -f tasks/ci/docker-compose.yml run publish
+          docker-compose -f tasks/ci/docker-compose.yml down
+      - name: prod_deploy
+        env:
+          Environment: prod
+          ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1
+        run: |
+          docker-compose -f tasks/ci/docker-compose.yml build deploy
+          docker-compose -f tasks/ci/docker-compose.yml run deploy
+          docker-compose -f tasks/ci/docker-compose.yml down

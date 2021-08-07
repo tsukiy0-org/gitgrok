@@ -1,0 +1,17 @@
+{
+  "name": "@app/core",
+  "private": true,
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "UNLICENSED",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsc -p tsconfig.build.json",
+    "test": "jest --passWithNoTests"
+  },
+  "dependencies": {
+    "@tsukiy0/extensions-core": "0.1.0-alpha.19",
+    "runtypes": "^6.3.2"
+  }
+}

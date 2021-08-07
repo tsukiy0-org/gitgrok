@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+yarn install --silent
+yarn lint
+yarn test
+yarn build
