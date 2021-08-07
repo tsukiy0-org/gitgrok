@@ -23,6 +23,7 @@
   },
   "scripts": {
     "clean": "lerna run clean",
+    "typecheck": "lerna run typecheck",
     "build": "lerna run build",
     "build:publish": "lerna run build:publish",
     "deploy": "lerna run deploy",
