@@ -6,6 +6,7 @@ export class RepositoryExtensions {
   static fromGitHubRepository = (input: GitHubRepository): Repository => {
     const mapped: Repository = {
       url: Url.check(input.url),
+      defaultBranch: input.defaultBranchRef!.name,
     };
     return Repository.check(mapped);
   };

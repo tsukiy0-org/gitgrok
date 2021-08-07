@@ -17,7 +17,9 @@ export class GitHubRepositoryService implements IRepositoryService {
 
   list = async (): Promise<Repository[]> => {
     const nodes = await this.listRecursively([], undefined);
-    return nodes.map((node) => RepositoryExtensions.fromGitHubRepository(node));
+    return nodes
+      .filter((_) => !_.isEmpty)
+      .map((node) => RepositoryExtensions.fromGitHubRepository(node));
   };
 
   private listRecursively = async (
@@ -68,6 +70,10 @@ export class GitHubRepositoryService implements IRepositoryService {
             nodes {
               ... on Repository {
                 url
+                defaultBranchRef {
+                  name
+                }
+                isEmpty
               }
             }
             pageInfo {
