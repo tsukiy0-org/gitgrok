@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-yarn run publish
+yarn run build:publish
