@@ -1,0 +1,24 @@
+{
+  "name": "@app/github-public-graphql-types",
+  "version": "0.1.0-alpha.41",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "2.0.1",
+    "@graphql-codegen/typescript": "2.0.0",
+    "graphql": "15.5.1"
+  },
+  "scripts": {
+    "generate": "graphql-codegen --config configs/codegen.yml",
+    "clean": "rimraf dist",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc -p tsconfig.build.json"
+  }
+}

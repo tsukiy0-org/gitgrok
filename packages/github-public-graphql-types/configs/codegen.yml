@@ -1,0 +1,19 @@
+overwrite: true
+generates:
+  ./src/index.ts:
+    schema:
+      - configs/schema.docs.graphql
+    plugins:
+      - typescript
+    config:
+      scalars:
+        Date: string
+        DateTime: string
+        GitObjectID: string
+        GitRefname: string
+        GitSSHRemote: string
+        GitTimestamp: any
+        HTML: string
+        PreciseDateTime: string
+        URI: string
+        X509Certificate: string
