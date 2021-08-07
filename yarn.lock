@@ -2163,7 +2163,7 @@
   resolved "https://registry.yarnpkg.com/@tsconfig/recommended/-/recommended-1.0.1.tgz#7619bad397e06ead1c5182926c944e0ca6177f52"
   integrity sha512-2xN+iGTbPBEzGSnVp/Hd64vKJCJWxsi9gfs88x4PPMyEjHJoA3o5BY9r5OLPHIZU2pAQxkSAsJFqn6itClP8mQ==
 
-"@tsukiy0/extensions-core@0.1.0-alpha.19":
+"@tsukiy0/extensions-core@0.1.0-alpha.19", "@tsukiy0/extensions-core@^0.1.0-alpha.19":
   version "0.1.0-alpha.19"
   resolved "https://registry.yarnpkg.com/@tsukiy0/extensions-core/-/extensions-core-0.1.0-alpha.19.tgz#ffaa9f6ddd09f2df92c6e01fe858f4afa9c76bb3"
   integrity sha512-G7/AtCHkuK6sUpGnSF1zoWK8RyFkRFPSo5XC5xDQdcrT4Hp3H1EmikTZy4UJQ3x3xFmCbmWe7h2vrRiCEV3UUw==

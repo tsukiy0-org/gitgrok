@@ -1,7 +1,8 @@
-import { Record, Static, String } from "runtypes";
+import { Url } from "@tsukiy0/extensions-core";
+import { Record, Static } from "runtypes";
 
 export const Repository = Record({
-  uri: String,
+  url: Url,
 });
 
 export type Repository = Static<typeof Repository>;
