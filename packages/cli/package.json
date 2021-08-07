@@ -1,0 +1,23 @@
+{
+  "name": "@app/cli",
+  "private": true,
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "UNLICENSED",
+  "scripts": {
+    "clean": "rimraf dist",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "ts-node -r tsconfig-paths/register src/index.ts"
+  },
+  "dependencies": {
+    "@app/core": "*",
+    "@app/infrastructure": "*",
+    "@tsukiy0/extensions-core": "0.1.0-alpha.20"
+  },
+  "devDependencies": {
+    "ts-node": "^10.1.0",
+    "tsconfig-paths": "^3.10.1"
+  }
+}
