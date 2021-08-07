@@ -12,6 +12,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: ["./packages/*/tsconfig.json"],
   },
+  ignorePatterns: ["packages/github-public-graphql-types/**/*", "**/*.d.ts"],
   rules: {
     "prettier/prettier": [
       "error",
