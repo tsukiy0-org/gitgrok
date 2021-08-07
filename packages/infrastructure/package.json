@@ -16,7 +16,7 @@
   "dependencies": {
     "@app/core": "*",
     "@app/github-public-graphql-types": "*",
-    "@tsukiy0/extensions-core": "^0.1.0-alpha.19",
+    "@tsukiy0/extensions-core": "^0.1.0-alpha.20",
     "graphql-request": "3.5.0",
     "node-fetch": "^2.6.1",
     "shelljs": "^0.8.4",
