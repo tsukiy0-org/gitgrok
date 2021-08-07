@@ -14,6 +14,8 @@
     "test:integration:local": "jest --config jest.config.integration.js -t OwmForecastService"
   },
   "dependencies": {
-    "@app/core": "*"
+    "@app/core": "*",
+    "@app/github-public-graphql-types": "*",
+    "graphql-request": "3.5.0"
   }
 }
