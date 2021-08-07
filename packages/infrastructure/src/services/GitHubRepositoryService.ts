@@ -69,7 +69,7 @@ export class GitHubRepositoryService implements IRepositoryService {
             repositoryCount
             nodes {
               ... on Repository {
-                nameWithOwner
+                name
                 url
                 defaultBranchRef {
                   name

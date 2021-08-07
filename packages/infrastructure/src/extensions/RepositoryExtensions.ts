@@ -5,7 +5,7 @@ import { Url } from "@tsukiy0/extensions-core";
 export class RepositoryExtensions {
   static fromGitHubRepository = (input: GitHubRepository): Repository => {
     const mapped: Repository = {
-      id: RepositoryId.check(input.nameWithOwner),
+      id: RepositoryId.check(input.name),
       url: Url.check(input.url),
       defaultBranch: input.defaultBranchRef!.name,
     };
