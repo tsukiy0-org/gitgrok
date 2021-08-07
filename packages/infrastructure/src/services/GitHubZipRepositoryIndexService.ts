@@ -15,7 +15,7 @@ export class GitHubZipRepositoryIndexService
 
   index = async (repository: Repository): Promise<void> => {
     const url = Url.check(
-      `https://github.com/${this.org}/${repository.id}/zipball/${repository.defaultBranch}`,
+      `https://github.com/${this.config.owner}/${repository.id}/zipball/${repository.defaultBranch}`,
     );
     const res = await fetch(url, {
       headers: {
@@ -23,7 +23,7 @@ export class GitHubZipRepositoryIndexService
       },
     });
 
-    const unzipFolder = path.resolve(this.rootPath, this.config.org);
+    const unzipFolder = path.resolve(this.rootPath, this.config.owner);
     fs.mkdirSync(unzipFolder, {
       recursive: true,
     });
@@ -31,7 +31,7 @@ export class GitHubZipRepositoryIndexService
     await new Promise((resolve, reject) => {
       const unzipPath = path.resolve(
         this.rootPath,
-        this.config.org,
+        this.config.owner,
         repository.id,
       );
 

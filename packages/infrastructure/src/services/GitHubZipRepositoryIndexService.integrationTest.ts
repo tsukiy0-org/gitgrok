@@ -5,18 +5,18 @@ import { Repository, RepositoryId } from "@app/core";
 import fs from "fs";
 
 describe("GitHubZipRepositoryIndexService", () => {
-  let org: string;
+  let owner: string;
   let rootPath: string;
   let sut: GitHubZipRepositoryIndexService;
 
   beforeEach(() => {
     const config = new SystemConfiguration();
     const accessToken = config.get("GH_ACCESS_TOKEN");
-    org = "atlassian";
+    owner = "atlassian";
     rootPath = path.resolve(__dirname, "../../tmp/zip");
     sut = new GitHubZipRepositoryIndexService(
       {
-        org,
+        owner,
         accessToken,
       },
       rootPath,
@@ -32,7 +32,9 @@ describe("GitHubZipRepositoryIndexService", () => {
       };
 
       await sut.index(repository);
-      const actual = fs.existsSync(path.resolve(rootPath, org, repository.id));
+      const actual = fs.existsSync(
+        path.resolve(rootPath, owner, repository.id),
+      );
 
       expect(actual).toBeTruthy();
     });

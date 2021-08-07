@@ -89,7 +89,7 @@ export class GitHubRepositoryService implements IRepositoryService {
         first: 100,
         after,
         type: SearchType.Repository,
-        query: `org:${this.config.org}`,
+        query: `org:${this.config.owner}`,
       },
     );
 

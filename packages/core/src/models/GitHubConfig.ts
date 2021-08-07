@@ -1,7 +1,7 @@
 import { Record, Static, String } from "runtypes";
 
 export const GitHubConfig = Record({
-  org: String,
+  owner: String,
   accessToken: String,
 });
 
