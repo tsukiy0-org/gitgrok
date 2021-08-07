@@ -7,7 +7,7 @@ describe("GitHubRepositoryService", () => {
 
   beforeEach(() => {
     const config = new SystemConfiguration();
-    const accessToken = config.get("GITHUB_ACCESS_TOKEN");
+    const accessToken = config.get("GH_ACCESS_TOKEN");
     const org = "atlassian";
     const client = new GitHubGraphQlClient(accessToken);
     sut = new GitHubRepositoryService(client, org);
