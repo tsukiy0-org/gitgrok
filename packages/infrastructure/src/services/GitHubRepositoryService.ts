@@ -23,13 +23,13 @@ export class GitHubRepositoryService implements IRepositoryService {
       QuerySearchArgs
     >(
       gql`
-        mutation Task(
-          after: String
-          before: String
-          first: Int
-          last: Int;
-          query: String!;
-          type: SearchType!;
+        query Task(
+          $after: String
+          $before: String
+          $first: Int
+          $last: Int
+          $query: String!
+          $type: SearchType!
         ) {
           search(
             after: $after
@@ -49,6 +49,7 @@ export class GitHubRepositoryService implements IRepositoryService {
         }
       `,
       {
+        first: 100,
         type: SearchType.Repository,
         query: `org:${this.org}`,
       },
