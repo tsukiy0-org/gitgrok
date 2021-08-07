@@ -14,7 +14,8 @@
   "dependencies": {
     "@app/core": "*",
     "@app/infrastructure": "*",
-    "@tsukiy0/extensions-core": "0.1.0-alpha.20"
+    "@tsukiy0/extensions-core": "0.1.0-alpha.20",
+    "commander": "^8.1.0"
   },
   "devDependencies": {
     "ts-node": "^10.1.0",
