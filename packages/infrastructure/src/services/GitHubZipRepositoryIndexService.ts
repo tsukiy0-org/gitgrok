@@ -1,4 +1,4 @@
-import { IRepositoryIndexService, Repository } from "@app/core";
+import { GitHubConfig, IRepositoryIndexService, Repository } from "@app/core";
 import fetch from "node-fetch";
 import { Url } from "@tsukiy0/extensions-core";
 import path from "path";
@@ -9,9 +9,8 @@ export class GitHubZipRepositoryIndexService
   implements IRepositoryIndexService
 {
   constructor(
-    private readonly org: string,
+    private readonly config: GitHubConfig,
     private readonly rootPath: string,
-    private readonly accessToken: string,
   ) {}
 
   index = async (repository: Repository): Promise<void> => {
@@ -20,17 +19,21 @@ export class GitHubZipRepositoryIndexService
     );
     const res = await fetch(url, {
       headers: {
-        Authorization: `token ${this.accessToken}`,
+        Authorization: `token ${this.config.accessToken}`,
       },
     });
 
-    const unzipFolder = path.resolve(this.rootPath, this.org);
+    const unzipFolder = path.resolve(this.rootPath, this.config.org);
     fs.mkdirSync(unzipFolder, {
       recursive: true,
     });
 
     await new Promise((resolve, reject) => {
-      const unzipPath = path.resolve(this.rootPath, this.org, repository.id);
+      const unzipPath = path.resolve(
+        this.rootPath,
+        this.config.org,
+        repository.id,
+      );
 
       res.body
         .pipe(

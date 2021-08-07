@@ -1,4 +1,4 @@
-import { IRepositoryService, Repository } from "@app/core";
+import { GitHubConfig, IRepositoryService, Repository } from "@app/core";
 import { GitHubGraphQlClient } from "./GitHubGraphQlClient";
 import {
   QuerySearchArgs,
@@ -10,10 +10,11 @@ import { RepositoryExtensions } from "../extensions/RepositoryExtensions";
 import { Repository as GitHubRepository } from "@app/github-public-graphql-types";
 
 export class GitHubRepositoryService implements IRepositoryService {
-  constructor(
-    private readonly client: GitHubGraphQlClient,
-    private readonly org: string,
-  ) {}
+  private readonly client: GitHubGraphQlClient;
+
+  constructor(private readonly config: GitHubConfig) {
+    this.client = new GitHubGraphQlClient(config.accessToken);
+  }
 
   list = async (): Promise<Repository[]> => {
     const nodes = await this.listRecursively([], undefined);
@@ -88,7 +89,7 @@ export class GitHubRepositoryService implements IRepositoryService {
         first: 100,
         after,
         type: SearchType.Repository,
-        query: `org:${this.org}`,
+        query: `org:${this.config.org}`,
       },
     );
 

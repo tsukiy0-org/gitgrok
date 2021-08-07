@@ -14,7 +14,13 @@ describe("GitHubZipRepositoryIndexService", () => {
     const accessToken = config.get("GH_ACCESS_TOKEN");
     org = "atlassian";
     rootPath = path.resolve(__dirname, "../../tmp/zip");
-    sut = new GitHubZipRepositoryIndexService(org, rootPath, accessToken);
+    sut = new GitHubZipRepositoryIndexService(
+      {
+        org,
+        accessToken,
+      },
+      rootPath,
+    );
   });
 
   describe("index", () => {

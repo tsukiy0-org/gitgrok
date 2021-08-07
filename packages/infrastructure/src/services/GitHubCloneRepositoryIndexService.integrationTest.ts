@@ -14,7 +14,13 @@ describe("GitHubCloneRepositoryIndexService", () => {
     const accessToken = config.get("GH_ACCESS_TOKEN");
     org = "atlassian";
     rootPath = path.resolve(__dirname, "../../tmp/clone");
-    sut = new GitHubCloneRepositoryIndexService(org, rootPath, accessToken);
+    sut = new GitHubCloneRepositoryIndexService(
+      {
+        org,
+        accessToken,
+      },
+      rootPath,
+    );
   });
 
   describe("index", () => {
